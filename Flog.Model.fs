@@ -4,6 +4,10 @@ module Flog.Model
 open System
 open System.IO
 
+type Format =
+    | Default
+    | X
+
 type L =
     | Error
     | Warning

@@ -14,10 +14,11 @@ let mutable Logger = consoleLogger
 // Log ->
 //
 let log (logger : IFlog) ll mm = 
-    using   <| logger
-            <| fun flog -> flog.FLog ll mm
+    using logger <|
+        fun flog -> flog.FLog ll mm
 
 // Default procedures ->
 //
-let dLog  message = log consoleLogger LogLevel message
-let dFlog message = log fileLogger LogLevel message
+let fM message = format LogLevel message
+let fL message = log consoleLogger LogLevel message
+let fF message = log fileLogger LogLevel message

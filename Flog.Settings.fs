@@ -5,6 +5,10 @@ open System.IO
 
 // Default log level ->
 //
+let mutable LogFormat = X
+
+// Default log level ->
+//
 let mutable LogLevel = Debug
 
 // Default log level ->
