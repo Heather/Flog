@@ -13,7 +13,9 @@ let mutable Logger = consoleLogger
 
 // Log ->
 //
-let log (logger : IFlog) = logger.FLog
+let log (logger : IFlog) ll mm = 
+    using   <| logger
+            <| fun flog -> flog.FLog ll mm
 
 // Default procedures ->
 //

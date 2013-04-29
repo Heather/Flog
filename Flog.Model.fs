@@ -1,6 +1,7 @@
 ﻿[<AutoOpen()>]
 module Flog.Model
 
+open System
 open System.IO
 
 type L =
@@ -17,4 +18,5 @@ type L =
 
 /// The inteface
 type IFlog = 
+    inherit IDisposable
     abstract FLog : L -> Printf.StringFormat<'a,unit> -> 'a
