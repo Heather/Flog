@@ -19,8 +19,10 @@ let consoleLogger = {
     new IFlog with
         member i.FLog level format =
             Printf.kprintf
-                (printfn
-                    "[%s][%A] %s"
+               (match LogFormat with
+                | X -> printfn "%s | %s" 
+                    <| DateTime.Now.ToString("hh:mm:ss fff")
+                | _ -> printfn "[%s][%A] %s"
                         <| level.ToString()
                         <| DateTime.Now)
                         format
@@ -30,9 +32,10 @@ let consoleLogger = {
 let fileLogger = {
     new IFlog with
         member i.FLog level format = 
-            file <-   match File.Exists(LogFileName) with
-                        | false -> File.CreateText(LogFileName)
-                        | true  -> File.AppendText(LogFileName)
+            if file = null then
+                file <-   match File.Exists(LogFileName) with
+                            | false -> File.CreateText(LogFileName)
+                            | true  -> File.AppendText(LogFileName)
             Printf.kprintf (
                 match LogFormat with
                 | X -> fprintfn file "%s | %s" 
@@ -43,4 +46,5 @@ let fileLogger = {
         member i.Dispose() = 
             file.Flush()
             file.Dispose()
+            file <- null
     }
