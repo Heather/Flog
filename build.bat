@@ -11,10 +11,10 @@ rm -rf bin
 rm -rf obj
 
 ::Build
-%MSBUILD% Flog-2012.fsproj /p:TargetFramework=net45 /p:Configuration=Release
+%MSBUILD% Flog.fsproj /p:Configuration=Release
 
 ::Test
-%MSBUILD% example/example-2012.fsproj /p:TargetFramework=net40 /p:Configuration=Release
+%MSBUILD% example/example.fsproj /p:Configuration=Release
 example\bin\Release\example_2012.exe
 
 ::Clean test
